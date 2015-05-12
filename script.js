@@ -59,7 +59,7 @@ $(document).on("submit", "#submit_list", function(e) {
 			$("#info").append("<p class='store'><a id=" + result.key + " href=#mylist>" + result.name + "</a></p>"); 
 			$("#new_list").val("");
 			e.preventDefault();
-			$.mobile.changePage("#mylist", {transition: "slide"});
+			location.reload();
 		}
 	});
 	
@@ -80,13 +80,9 @@ $(document).on("submit", "#submit_item", function(e) {
 			$("#new_name").val("");
 			$("#new_quantity").val("1");
 			document.getElementById("item_id").setAttribute("name", result.key);
-
 			e.preventDefault();
 			$.mobile.changePage("#mylist", {transition: "pop"});
-		
-		
 			item_id = document.getElementById("item_id").getAttribute("name");
-			alert(typeof item_id);
 			
 			$.ajax({
 				url: "http://localhost:8080/list/" + list_id + "/item/" + item_id,
