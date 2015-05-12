@@ -6,6 +6,7 @@
   		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<script src="script.js" type="application/javascript"></script>	  
+		<script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 		<link rel="stylesheet" type="text/css" href="default.css"/>
 	</head> 
 	<body> 
@@ -23,6 +24,7 @@
 					<input type="text" id="new_list" required/>
 					<input type="submit" value="Add" data-inline="true"/>
 				</form>
+				<a href="#map-page" data-role="button">GO TO MAP</a>		
 			</div>
  		</div>
  
@@ -49,6 +51,16 @@
 					<input type="submit" value="Add" data-inline="true"/>
 				</form>
 			</div>
+		</div>
+
+		<div data-role="page" id="map-page" data-url="map-page">
+    		<div data-role="header" data-theme="b">
+    			<h1>Map</h1>
+				<a data-role="button" data-rel="back" id="back" data-theme="a">Back</a>
+    		</div>
+			<div role="main" class="ui-content" id="map-canvas" style="padding: 0; position: absolute; top: 40px; right: 0; bottom: 40px; left: 0;">
+        		<!-- map loads here... -->
+    		</div>
 		</div>
 	</body>
 </html>
