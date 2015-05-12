@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html> 
+  	<head> 
+  		<title>HW4</title> 
+  		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="script.js" type="application/javascript"></script>	  
+		<link rel="stylesheet" type="text/css" href="default.css"/>
+	</head> 
+	<body> 
+ 		<div data-role="page" id="home">
+ 
+			<div data-role="header" data-theme="b">
+    			<h1>Home</h1>
+  			</div>
+ 
+  			<div data-role="content"> 
+				<h2>My Lists:</h2>
+				<div id="info"></div>
+				<h2>Add New List</h2>
+				<form method="post" id="submit_list">
+					<input type="text" id="new_list" required/>
+					<input type="submit" value="Add" data-inline="true"/>
+				</form>
+			</div>
+ 		</div>
+ 
+		<div data-role="page" id="mylist" data-add-back-btn="true">
+  			<div id="list_header" data-role="header" data-theme="b">
+				<a data-role="button" data-rel="back" id="back" data-theme="a">Back</a>
+  			</div>
+ 
+			<div data-role="content" id="myitems">
+				<h2>My Items:</h2>
+				<div id="item_info"></div>
+				<div id="list_id"></div>
+				<div id="item_id"></div>
+				<h2>Add New Item</h2>	
+				<form id="submit_item" method="post">
+					<div data-role="fieldcontain">
+						<label for="new_name">Name:</label>
+						<input type="text" name="new_name" id="new_name" required/>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="new_quantity">Quantity:</label>
+						<input type="number" name="new_quantity" id="new_quantity" value="1"  min="1" step="1" required/>
+					</div>	
+					<input type="submit" value="Add" data-inline="true"/>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

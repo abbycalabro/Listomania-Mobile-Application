@@ -1,0 +1,49 @@
+#POST list data: PASS
+curl --data "name=Target" -H "Accept: application/json" http://localhost:8080/list
+{"name": "Target", "key": 6682831673622528, "items": []}
+
+#GET list data: PASS
+curl -H "Accept: application/json" http://localhost:8080/list/5275456790069248
+{"key": 5275456790069248, "name": "Target", "items": [6682831673622528]}
+
+#GET all list keys: PASS
+curl -H "Accept: application/json" http://localhost:8080/list
+{"keys": [5064350557536256, 5275456790069248, 5345825534246912, 5908775487668224, 6049512976023552, 6330987952734208, 6471725441089536]}
+
+#DELETE list:  PASS
+curl -X DELETE -H "Accept: application/json" http://localhost:8080/list/4923613069180928
+
+#POST item data
+#name only PASS
+curl --data "name=Cucumber" -H "Accept: application/json" http://localhost:8080/item{"quantity": 1, "key": 6753200417800192, "name": "Cucumbers", "checked": false}
+
+#name and quantity PASS
+curl --data "name=Cucumbers" -d "quantity=3" -H "Accept: application/json" http://localhost:8080/item
+{"quantity": 3, "key": 5627300510957568, "name": "Cucumbers", "checked": false}
+
+#name, quantity, and checked PASS
+curl --data "name=Cucumbers" -d "quantity=5" -d "checked=True" -H "Accept: application/json" http://localhost:8080/item
+{"key": 4504699138998272, "name": "Cucumbers", "checked": true, "quantity": 5}
+
+#invalid quantity type PASS
+curl --data "name=Cucumbers" -d "quantity=hello" -d "checked=True" -H "Accept: application/json" http://localhost:8080/item
+Error: quantity must be an int
+
+#invalid checked type PASS
+curl --data "name=Cucumbers" -d "quantity=10" -d "checked=hello" -H "Accept: application/json" http://localhost:8080/item
+Error: checked must be bool
+
+#GET item data: PASS
+curl -H "Accept: application/json" http://localhost:8080/item/4926911604064256{"quantity": 10, "name": "Cucumbers", "key": 4926911604064256, "checked": true}
+
+#GET all item keys: PASS
+curl -H "Accept: application/json" http://localhost:8080/item
+{"keys": [4504699138998272, 4645436627353600, 4782875580825600, 4786174115708928, 4926911604064256, 5067649092419584, 5205088045891584, 5208386580774912, 5349124069130240, 5486563022602240, 5627300510957568, 5630599045840896, 5771336534196224, 5912074022551552, 6052811510906880, 6190250464378880, 6193548999262208, 6334286487617536, 6475023975972864, 6612462929444864, 6753200417800192]}
+
+#Add item to list (PUT): PASS
+curl -X PUT http://mimetic-myth-92421.appspot.com/list/5644406560391168/item/5732568548769792 -H 'Content-Length:0'
+{"items": [5732568548769792], "name": "Trader Joe's", "key": 5644406560391168}
+
+
+#DELETE item and all references to item: PASS
+curl -X DELETE -H "Accept application/json" http://localhost:8080/item/5768037999312896
