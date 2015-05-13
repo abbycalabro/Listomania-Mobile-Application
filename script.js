@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$.ajax({
-		url: "http://localhost:8080/list",
+		url: "http://intense-sled-94005.appspot.com/list",
 		type: "GET",
 		success: function(result) {
 			result = JSON.parse(result);
@@ -18,7 +18,7 @@ $(document).on("tap", ".store", function(e) {
         $("#list_header").append("<h1 id=title class='ui-title' role='heading' aria-level='1'>" + formatted_name + "</h1>");
 
 	$.ajax({
-		url: "http://localhost:8080/list/" + e.target.id,
+		url: "http://intense-sled-94005.appspot.com/list/" + e.target.id,
 		type: "GET",
 		success: function(data) {
 			data = JSON.parse(data);
@@ -27,7 +27,7 @@ $(document).on("tap", ".store", function(e) {
 		}
 	});
 	$.ajax({
-		url: "http://localhost:8080/item",
+		url: "http://intense-sled-94005.appspot.com/item",
 		type: "GET",
 		success: function(data) {
 			data = JSON.parse(data);
@@ -51,7 +51,7 @@ $(document).on("submit", "#submit_list", function(e) {
 	list_name = $("#new_list").val();
 	var temp = list_name;
 	$.ajax({
-		url: "http://localhost:8080/list",
+		url: "http://intense-sled-94005.appspot.com/list",
 		type: "POST",
 		data: "name=" + temp,
 		success: function(result) {
@@ -71,7 +71,7 @@ $(document).on("submit", "#submit_item", function(e) {
 	list_id = document.getElementById("list_id").getAttribute("name");
 
 	$.ajax({
-		url: "http://localhost:8080/item",
+		url: "http://intense-sled-94005.appspot.com/item",
 		type: "POST",
 		data: "name=" + item_name + "&quantity=" + item_quantity,
 		success: function(result) {
@@ -81,11 +81,12 @@ $(document).on("submit", "#submit_item", function(e) {
 			$("#new_quantity").val("1");
 			document.getElementById("item_id").setAttribute("name", result.key);
 			e.preventDefault();
+			
 			$.mobile.changePage("#mylist", {transition: "pop"});
 			item_id = document.getElementById("item_id").getAttribute("name");
 			
 			$.ajax({
-				url: "http://localhost:8080/list/" + list_id + "/item/" + item_id,
+				url: "http://intense-sled-94005.appspot.com/list/" + list_id + "/item/" + item_id,
 				type: "PUT",
 				success: function(result) {
 					e.preventDefault();
@@ -99,7 +100,7 @@ $(document).on("submit", "#submit_item", function(e) {
 
 $(document).on("swiperight", ".store", function(e) {
 	$.ajax({
-		url: "http://localhost:8080/list/" + e.target.id,
+		url: "http://intense-sled-94005.appspot.com/list/" + e.target.id,
 		type: "DELETE",
 		success: function(result) {
 			$("#" + e.target.id).remove();
@@ -111,7 +112,7 @@ $(document).on("swiperight", ".store", function(e) {
 
 $(document).on("swiperight", ".item", function(e) {
 	$.ajax({
-		url: "http://localhost:8080/item/" + e.target.id,
+		url: "http://intense-sled-94005.appspot.com/item/" + e.target.id,
 		type: "DELETE",
 		success: function(result) {
 			$("#" + e.target.id).remove();
@@ -128,11 +129,11 @@ $(document).on("swiperight", ".item", function(e) {
  */
 $( document ).on( "pageshow", "#map-page", function() {
     var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
-    if ( navigator.geolocation ) {
-        function success(pos) {
+    if ( navigator.geolocation) {
+	function success(pos) {
             // Location found, show map with these coordinates
             drawMap(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-        }
+	}
         function fail(error) {
             drawMap(defaultLatLng);  // Failed to find location, show default map
         }
