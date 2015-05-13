@@ -74,15 +74,14 @@ class List(webapp2.RequestHandler):
 
                 if 'id' in kwargs:
                         list_key = ndb.Key(db_models.List, int(kwargs['id']))
-                        #list_to_delete = db_models.List.query(db_models.List.id() == list_key)
-
+			my_key = db_models.List.get_by_id(int(kwargs['id']))
 			items_in_list = db_models.Item.query()
 			item_keys = items_in_list.fetch(keys_only=True);
 
 			#delete items in list
 			for key in item_keys:
-				#if key in list_to_delete.items:
-				key.delete()
+				if key in my_key.items:
+					key.delete()
 
 			#delete list
 			list_key.delete()
