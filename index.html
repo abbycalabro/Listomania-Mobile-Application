@@ -3,40 +3,48 @@
   	<head> 
   		<title>HW4</title> 
   		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-		<link type="text/css" rel="stylesheet" href="themes/abby2.min.css" />
+		<link type="text/css" rel="stylesheet" href="themes/abby4.min.css" />
 		<link type="text/css" rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
   		<link type="text/css" rel="stylesheet" href="default.css" />
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		<script src="script.js" type="application/javascript"></script>	  
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places&sensor=false"></script>
+		<style>
+			*, .ui-li-static, .ui-btn {font-family: courier new; !important}
+		</style>
 	</head> 
 	<body> 
  		<div data-role="page" id="home">
 			<div data-role="header">
-				<h1 class="home_header">Listomania!</h1>
+				<h1 class="home_header" style="font-family: courier new; font-size: 1.5em;">Listomania!</h1>
 			</div>
  
   			<div data-role="content"> 
 				<h2>My Lists:</h2>
-				<ul id="info" data-role="listview"></ul>
-				<h2>New List:</h2>
+				<ul id="info" data-role="listview" class="ui-corner-bl ui-corner-br" data-inset="true"></ul>
+				<h2 style="margin-top: 20px;">New List:</h2>
 				<form data-ajax="false" method="post" id="submit_list">
 					<input type="text" id="new_list" required />
 					<input id="list_button" type="submit" data-inline="true" value="Add"/>
 				</form>
-				<a href="#map-page" id="map_button" data-role="button">SEARCH STORES NEAR ME</a>		
+			</div>
+
+			<div data-id="map_footer" data-role="footer" class="ui-footer ui-bar-inherit ui-footer-fixed slideup" data-position="fixed">
+				<h4>
+					<a href="#map-page" id="map_button" data-role="button">SEARCH STORES NEAR ME</a>			
+				</h4>
 			</div>
  		</div>
  
 		<div data-role="page" id="mylist" data-add-back-btn="true">
   			<div id="list_header" class="header" data-role="header">
-				<a data-role="button" data-rel="back" id="back">Back</a>
+				<a data-role="button" data-rel="back" id="back" data-icon="back">Back</a>
   			</div>
  
 			<div data-role="content" id="myitems">
 				<h2>My Items:</h2>
-				<ul id="item_info" data-role="listview"></ul>
+				<ul id="item_info" data-role="listview" class="ui-corner-bl ui-corner-br" data-inset="true"></ul>
 				<div id="list_id"></div>
 				<div id="item_id"></div>
 				<h2>New Item:</h2>	
@@ -52,7 +60,11 @@
 					<input data-ajax="false" type="submit" id="item_button" value="Add" data-inline="true"/>
 				</form>
 			</div>
+			<div data-id="map_footer" data-role="footer" class="ui-footer ui-bar-inherit ui-footer-fixed slideup" data-position="fixed">
+				<h4>created by Abby Meunier, May 2015</h4>
+			</div>
 		</div>
+		
 		<div data-role="page" id="map-page" data-url="map-page">
     			<div data-role="header">
     				<h1 class="header">Map</h1>
